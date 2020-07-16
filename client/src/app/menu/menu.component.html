@@ -1,0 +1,163 @@
+<div class="card text-center">
+    <h5 class="card-header">Menu de Accion</h5>
+    <div class="card-body">
+      <h5 class="card-title">¿Que desea hacer?</h5>
+      <div class="row">
+        <div class="col-6">
+          <div class="btn-group " role="group">
+            <button id="btnGroupDrop1" type="button" class="btn btn-outline-info dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+              Usuarios
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+              <li><a class="dropdown-item" (click)="allUsers()">Ver Usuarios</a></li>
+              <li><a class="dropdown-item" href="" data-toggle="modal" data-target="#exampleModal">Nuevo Usuario</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="btn-group " role="group">
+            <button id="btnGroupDrop1" type="button" class="btn btn-outline-success dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+              Estudiantes
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+              <li><a class="dropdown-item" (click)="allStudents()">Ver Estudiantes</a></li>
+              <li><a class="dropdown-item" href="" data-toggle="modal" data-target="#studentModal">Nuevo Estudiante</a></li>
+            </ul>
+          </div>
+        </div>  
+      </div>
+    </div>
+</div>
+
+<div class="text-center" *ngIf="userStatus != false">
+  <h4 for="">Lista de Usuarios</h4>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Nombre de Usuario</th>
+        <th scope="col">Correo</th>
+        <th scope="col">Acciones</th>
+      </tr>
+    </thead>
+    <tbody *ngFor='let user of dataArray'>
+      <tr>
+        <th scope="row">1</th>
+        <td>{{ user.nickname }}</td>
+        <td>{{ user.email }}</td>
+        <td><button class="btn btn-warning">Editar</button>  <button class="btn btn-danger">Eliminar</button></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text-center" *ngIf="studentStatus != false">
+  <h4 for="">Lista de Estudiantes</h4>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Nombre</th>
+        <th scope="col">Apellido</th>
+        <th scope="col">Direccion</th>
+        <th scope="col">edad</th>
+        <th scope="col">foto</th>
+        <th scope="col">Acciones</th>
+      </tr>
+    </thead>
+    <tbody *ngFor='let student of dataArray'>
+      <tr>
+        <th scope="row">1</th>
+        <td>{{ student.nombre }}</td>
+        <td>{{ student.apellido }}</td>
+        <td>{{ student.edad }}</td>
+        <td>{{ student.direccion }}</td>
+        <td>{{ student.foto }}</td>
+        <td><button class="btn btn-warning">Editar</button>  <button class="btn btn-danger">Eliminar</button></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Nuevo Usuario</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div>
+          <form>
+            <div class="mb-3">
+              <label for="recipient-name" class="col-form-label">Nombre de Usuario</label>
+              <input type="text" [(ngModel)]="nickname" name="nickname" class="form-control" id="recipient-name">
+            </div>
+            <div class="mb-3">
+              <label for="recipient-name" class="col-form-label">Correo</label>
+              <input type="text" [(ngModel)]="email" name="eamil" class="form-control" id="recipient-name">
+              
+            </div>
+            <div class="mb-3">
+              <label for="recipient-name" class="col-form-label">Contraseña</label>
+              <input type="password"  [(ngModel)]='password' name="password" class="form-control" id="recipient-name">
+              
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-success" (click)="newUser()">Guardar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="studentModal" tabindex="-1" aria-labelledby="studentModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Nuevo Estudiante</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div>
+          <form>
+            <div class="mb-3">
+              <label for="recipient-name" class="col-form-label">Nombre</label>
+              <input type="text" [(ngModel)]="name" name="name" class="form-control" id="recipient-name">
+            </div>
+            <div class="mb-3">
+              <label for="recipient-name" class="col-form-label">Apellido</label>
+              <input type="text" [(ngModel)]="lastname" name="lastname" class="form-control" id="recipient-name">
+              
+            </div>
+            <div class="mb-3">
+              <label for="recipient-name" class="col-form-label">Edad</label>
+              <input type="text"  [(ngModel)]='age' name="age" class="form-control" id="recipient-name">
+            </div>
+            <div class="mb-3">
+              <label for="recipient-name" class="col-form-label">Direccion</label>
+              <input type="text"  [(ngModel)]='address' name="address" class="form-control" id="recipient-name">
+            </div>
+            <div class="mb-3">
+              <label for="recipient-name" class="col-form-label">Foto</label>
+              <input type="file"  [(ngModel)]='img' name="img" class="form-control" id="recipient-name">
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-success" (click)="newStudent()">Guardar</button>
+      </div>
+    </div>
+  </div>
+</div>
+  

@@ -1,0 +1,21 @@
+<h1>Login</h1>
+  <div class="card" style="width: 18rem;">
+   
+    <div class="card-body">
+        
+            
+              <label for="exampleInputEmail1">Email </label>
+              <input type="email" [(ngModel)]='email' class="form-control"  id="exampleInputEmail1"
+               aria-describedby="emailHelp"
+               required autofocus >
+              
+           
+            
+              <label for="exampleInputPassword1">Password</label>
+              <input type="password"  [(ngModel)]='password' class="form-control" id="exampleInputPassword1">
+       
+            <br>
+            <button type="button" class="btn btn-success btn-sm btn-block " (click)="login()"  >Ingresar</button>
+         
+    </div>
+  </div>
